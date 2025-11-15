@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cldy Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Rajdhani', sans-serif; }
+
+/* Animated Gradient Background */
+body {
+  min-height:100vh;
+  overflow:hidden;
+  background: linear-gradient(120deg, #0a1f3f, #1a3f6f, #0f2a50, #123456);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+@keyframes gradientBG {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* Animated Neon Grid Lines */
+.opening-bg {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: repeating-linear-gradient(0deg, rgba(0,255,255,0.05) 0 2px, transparent 2px 20px),
+              repeating-linear-gradient(90deg, rgba(0,255,255,0.05) 0 2px, transparent 2px 20px);
+  animation: moveGrid 5s linear infinite;
+  z-index:0;
+}
+
+@keyframes moveGrid {
+  0% { background-position:0 0, 0 0; }
+  100% { background-position:100px 100px, 100px 100px; }
+}
+
+/* Diagonal Streaks for Premium Feel */
+.background-streaks {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0,255,255,0.03) 0 2px,
+    transparent 2px 20px
+  );
+  animation: streakMove 15s linear infinite;
+  z-index:0;
+}
+
+@keyframes streakMove {
+  0% { background-position:0 0; }
+  100% { background-position:200px 200px; }
+}
+
+/* Opening Screen */
+.opening-screen {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.5);
+  flex-direction:column;
+  color:#00f0ff;
+  text-align:center;
+  z-index:10;
+  animation: fadeOut 1.5s ease 1.2s forwards;
+}
+
+.opening-screen h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size:4rem;
+  letter-spacing:5px;
+  text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff, 0 0 80px #00f0ff;
+  animation: popIn 1s ease forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity:0; }
+  70% { transform: scale(1.2); opacity:1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeOut {
+  0% { opacity:1; }
+  100% { opacity:0; pointer-events:none; display:none; }
+}
+
+/* Main Links Container */
+.link-container {
+  display:none;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
+  border-radius:25px;
+  padding:45px 35px;
+  text-align:center;
+  width:90%;
+  max-width:500px;
+  box-shadow:0 0 25px #00f0ff inset, 0 0 50px #00f0ff;
+  z-index:1;
+  opacity:0;
+  animation: fadeInContainer 1s ease forwards;
+  animation-delay:1.2s;
+}
+
+@keyframes fadeInContainer {
+  0% { opacity:0; }
+  100% { opacity:1; display:block; }
+}
+
+.link-container h1 {
+  font-family: 'Orbitron', sans-serif;
+  color:#00f0ff;
+  font-size:3rem;
+  margin-bottom:35px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 15px #00f0ff, 0 0 30px #00f0ff, 0 0 60px #00f0ff;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow:0 0 15px #00f0ff,0 0 30px #00f0ff,0 0 60px #00f0ff; }
+  100% { text-shadow:0 0 25px #00f0ff,0 0 50px #00f0ff,0 0 100px #00f0ff; }
+}
+
+/* Premium Neon Buttons */
+.social-link {
+  display:block;
+  position:relative;
+  text-decoration:none;
+  color:#00f0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:1.3rem;
+  letter-spacing:2px;
+  padding:18px 25px;
+  margin:15px 0;
+  border-radius:12px;
+  background: linear-gradient(145deg, #001f50, #003366);
+  box-shadow: 0 0 5px #00f0ff inset, 0 0 15px #00f0ff, 0 0 30px #00f0ff inset;
+  transition:0.4s all;
+  overflow:hidden;
+}
+
+.social-link::before {
+  content:"";
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 70%);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition:0.5s all;
+}
+
+.social-link:hover::before { transform: rotate(45deg) translate(0,0); }
+
+.social-link:hover {
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 0 40px #00f0ff,0 0 80px #00f0ff inset;
+  background: linear-gradient(145deg,#002266,#0044aa);
+  text-shadow:0 0 8px #00f0ff;
+}
+
+/* Bubbles */
+.bubble {
+  position:absolute;
+  border-radius:50%;
+  background: rgba(0,255,255,0.15);
+  animation: rise linear infinite;
+  filter:blur(2px);
+}
+
+@keyframes rise {
+  0% { transform: translateY(100vh) scale(0); opacity:0.15; }
+  50% { opacity:0.35; }
+  100% { transform: translateY(-10vh) scale(1); opacity:0; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Animated Grid Background -->
+<div class="opening-bg"></div>
+<!-- Moving Diagonal Streaks -->
+<div class="background-streaks"></div>
+
+<!-- Opening Screen -->
+<div class="opening-screen">
+  <h1>Cldy Page</h1>
+</div>
+
+<!-- Main Links -->
+<div class="link-container">
+  <h1>My Links Cldy♡</h1>
+  <a href="https://x.com/PrimeCldy" target="_blank" class="social-link">𝕏</a>
+  <a href="https://www.instagram.com/m7tzz/" target="_blank" class="social-link">Instagram</a>
+  <a href="https://www.tiktok.com/@sxicide00?lang=hu-HU" target="_blank" class="social-link">TikTok</a>
+   <a href="https://www.twitch.tv/primecldy" target="_blank" class="social-link">Twitch</a>
+  <a href="https://www.youtube.com/@PrimeFrozti" target="_blank" class="social-link">YouTube</a>
+ <a href="https://www.vinted.hu/member/305416158" target="_blank" class="social-link">Vinted Shop</a>
+</div>
+
+<!-- Bubbles Script -->
+<script>
+const bubbleCount = 120;
+for(let i=0;i<bubbleCount;i++){
+  const bubble=document.createElement('div');
+  bubble.classList.add('bubble');
+  const size=Math.random()*35+10;
+  bubble.style.width=`${size}px`;
+  bubble.style.height=`${size}px`;
+  bubble.style.left=`${Math.random()*100}vw`;
+  bubble.style.animationDuration=`${0.8+Math.random()*3}s`;
+  bubble.style.opacity=Math.random()*0.35+0.15;
+  document.body.appendChild(bubble);
+}
+
+// Show main container after opening screen
+setTimeout(()=> {
+  document.querySelector('.link-container').style.display='block';
+},1200);
+</script>
+
+</body>
+</html>
